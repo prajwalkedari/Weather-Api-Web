@@ -21,7 +21,7 @@
       <meta name='coverage' content='Worldwide'>
       <meta name='distribution' content='Global'>
       <meta name='rating' content='General'>
-      <meta name='subtitle' content='Find your ciry weather'>
+      <meta name='subtitle' content='Find your city weather'>
       <meta name='target' content='Dev'>
       <meta name='date' content='July. 22, 2022'>
       <meta name='search_date' content='2022-07-22'>
@@ -64,7 +64,7 @@
    let WedInfo={};
 
    function runn(){
-       fetch("http://api.weatherapi.com/v1/current.json?key=3ee3a073d339461fa4b141839222107&q="+document.getElementById("inC").value).then(WInfo=>WInfo.json())
+       fetch("https://api.weatherapi.com/v1/current.json?key=3ee3a073d339461fa4b141839222107&q="+document.getElementById("inC").value).then(WInfo=>WInfo.json())
        .then(data=>{LocoInfo=data.location;
         WedInfo=data.current;})
         document.getElementById("txt").innerText=WedInfo.condition.text;
