@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>weather api</title>
+      <meta name='keywords' content='api,weather,github, licence, open-source'>
+      <meta name='description' content='This an example of weather api tool that fetch weadth of any city with simple Html, Js with help of (weatherapi.com) (For Education Purpose)'>
+      <meta name='subject' content='WeatherApi'>
+      <meta name='copyright' content='@prajwalkedri'>
+      <meta name='license' content='MIT'>
+      <meta name='language' content='js'>
+      <meta name='topic' content='RestApi'>
+      <meta name='summary' content='Get weathere of any city in world'>
+      <meta name='Classification' content='Learning'>
+      <meta name='author' content='Prajwal, mail@prajwalkedari.ml'>
+      <meta name='designer' content='Prajwal-auther'>
+      <meta name='reply-to' content='mail@prajwalkedari.tk'>
+      <meta name='owner' content='prajwal'>
+      <meta name='url' content='https://www.github.com/prajwalkedari'>
+      <meta name='category' content='Tech'>
+      <meta name='coverage' content='Worldwide'>
+      <meta name='distribution' content='Global'>
+      <meta name='rating' content='General'>
+      <meta name='subtitle' content='Find your ciry weather'>
+      <meta name='target' content='Dev'>
+      <meta name='date' content='July. 22, 2022'>
+      <meta name='search_date' content='2022-07-22'>
+   </head>
+   <body>
+      <a href="https://www.weatherapi.com/" title="Free Weather API" ><img src="https://cdn.weatherapi.com/v4/images/weatherapi_logo.png" alt="Weather data by WeatherAPI.com" border="0"></a>
+      <input type="text" id="inC" placeholder="Enter City Name"><button type="sumit" onclick="runn()"> Get Data </button>
+      <center>
+         <img src="" id="img">
+         <h5 id="txt"></h5>
+         <br>
+         <hr>
+         <br>
+         <table border="solid black" id="LD">
+            <tr>
+               <th  colspan="2">  Location  </th>
+            </tr>
+         </table>
+         <br>
+         <hr>
+         <br>
+         <table border="solid black" id="WD">
+            <tr>
+               <th  colspan="2">  Weather Report  </th>
+            </tr>
+         </table>
+      </center>
+   </body>
+   <script>   
+      function TableInput(id,Data,arr=1){
+        var table = document.getElementById(id);
+        var row = table.insertRow();
+        for(i= 0 ; i<arr; i++){
+        var cell = row.insertCell(i);
+        cell.innerHTML = Data[i];
+       }
+      }
+  //var City = documents.getElementById("inC") 
+   let LocoInfo={};
+   let WedInfo={};
+
+   function runn(){
+       fetch("http://api.weatherapi.com/v1/current.json?key=3ee3a073d339461fa4b141839222107&q="+document.getElementById("inC").value).then(WInfo=>WInfo.json())
+       .then(data=>{LocoInfo=data.location;
+        WedInfo=data.current;})
+        document.getElementById("txt").innerText=WedInfo.condition.text;
+      
+        for (var i in LocoInfo ){
+          TableInput("LD",[i , LocoInfo[i]],2)
+          }
+        for (var i in WedInfo ){
+         TableInput("WD",[i , WedInfo[i]],2)
+         }
+        document.getElementById("img").src="http:"+ WedInfo.condition.icon;
+   }
+   </script>
+</html>
